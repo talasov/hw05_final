@@ -42,4 +42,3 @@ class FollowAdmin(admin.ModelAdmin):
     list_display = ('user', 'author')
     list_filter = ('user', 'author')
     search_fields = ('user', 'author')
-
