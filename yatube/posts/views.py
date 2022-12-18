@@ -1,9 +1,8 @@
 from django.shortcuts import render, get_object_or_404
-from django.conf import settings
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.cache import cache_page
-from django.core.paginator import Paginator
+
 
 from .models import Post, Group, User, Follow
 from .forms import CommentForm, PostForm

@@ -69,3 +69,4 @@ class GroupModelTest(TestCase):
             with self.subTest(value=value):
                 verbose_name = self.group._meta.get_field(value).verbose_name
                 self.assertEqual(verbose_name, expected)
+

@@ -95,3 +95,4 @@ class PostFormTests(TestCase):
         redirect = reverse('login') + '?next=' + reverse('posts:create')
         self.assertRedirects(response, redirect)
         self.assertEqual(Post.objects.count(), posts_count)
+
