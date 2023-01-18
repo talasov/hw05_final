@@ -1,7 +1,6 @@
 from django.contrib.auth import get_user_model
 from django.db import models
-
-# from core.models import CreatedModel
+from django.conf import settings
 
 User = get_user_model()
 
@@ -66,7 +65,7 @@ class Post(models.Model):
         verbose_name = 'Пост'
 
     def __str__(self):
-        return self.text[:15]
+        return self.text[:settings.NUMBER_LETTERS]
 
 
 class Comment(models.Model):
@@ -98,7 +97,7 @@ class Comment(models.Model):
         verbose_name = 'Коментарий'
 
     def __str__(self):
-        return self.text[:15]
+        return self.text[:settings.NUMBER_LETTERS]
 
 
 class Follow(models.Model):
@@ -116,6 +115,7 @@ class Follow(models.Model):
     class Meta:
         verbose_name_plural = 'Подписчика'
         verbose_name = 'Подписчик'
+        unique_together = ('user', 'author',)
 
     def __str__(self):
         return f'{self.user} подписался на {self.author}'
