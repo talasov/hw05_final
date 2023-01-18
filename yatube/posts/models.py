@@ -1,6 +1,7 @@
 from django.contrib.auth import get_user_model
 from django.db import models
 from django.conf import settings
+from django.db.models import Q, F
 
 User = get_user_model()
 
@@ -103,19 +104,29 @@ class Comment(models.Model):
 class Follow(models.Model):
     user = models.ForeignKey(
         User,
+        verbose_name='Подписчик',
         on_delete=models.CASCADE,
         related_name='follower',
-        verbose_name='Пользователь')
+        blank=True, null=True,
+    )
     author = models.ForeignKey(
         User,
+        verbose_name='Интересующий Вас автор',
         on_delete=models.CASCADE,
         related_name='following',
-        verbose_name='Автор')
+        blank=True, null=True,
+    )
 
     class Meta:
-        verbose_name_plural = 'Подписчика'
-        verbose_name = 'Подписчик'
-        unique_together = ('user', 'author',)
+        models.UniqueConstraint(
+            fields=['user', 'author'],
+            name='unique_following'
+        )
+        constraints = [
+            models.CheckConstraint(
+                check=~Q(user=F('author')),
+                name='no_yourself_follow')
+        ]
 
     def __str__(self):
         return f'{self.user} подписался на {self.author}'
