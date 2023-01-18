@@ -19,7 +19,8 @@ class PostModelTest(TestCase):
 
     def test_post_str(self):
         """Проверка __str__ у post."""
-        self.assertEqual(self.post.text[:settings.NUMBER_LETTERS], str(self.post))
+        self.assertEqual(self.post.text[:settings.NUMBER_LETTERS],
+                         str(self.post))
 
     def test_post_verbose_name(self):
         """Проверка verbose_name у post."""
