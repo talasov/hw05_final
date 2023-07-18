@@ -30,7 +30,7 @@
 1. Клонируйте репозиторий и перейдите в него в командной строке:
 
 ```
-git clone https://github.com/golenkovyura/hw05_final.git
+https://github.com/talasov/hw05_final.git
 ```
 
 ```
